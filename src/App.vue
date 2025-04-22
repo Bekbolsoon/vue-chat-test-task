@@ -34,12 +34,12 @@ const sendMessageFromUser2 = () => {
         <div v-for="message in messages" :key="message.text" class="message" :class="{ 
           'me': message.from === 'user1',
           'companion': message.from === 'user2' }">
-          <p>{{ message.from === 'user1' ? 'Вы: ' : 'User2: ' }} {{ message.text }}</p>
+          <p>{{ message.from === 'user1' ? 'You: ' : 'User2: ' }} {{ message.text }}</p>
         </div>
       </div>
       <div class="input-area">
-        <input v-model="messageUser1" placeholder="Введите сообщение" />
-        <button @click="sendMessageFromUser1">Отправить</button>
+        <input v-model="messageUser1" class="form-control" placeholder="Enter a message" />
+        <button class="btn btn-primary" @click="sendMessageFromUser1">Send</button>
       </div>
     </div>
 
@@ -50,12 +50,12 @@ const sendMessageFromUser2 = () => {
         <div v-for="message in messages" :key="message.text" class="message" :class="{ 
           'me': message.from === 'user2',
           'companion': message.from === 'user1' }">
-          <p>{{ message.from === 'user2' ? 'Вы: ' : 'User1: ' }} {{ message.text }}</p>
+          <p>{{ message.from === 'user2' ? 'You: ' : 'User1: ' }} {{ message.text }}</p>
         </div>
       </div>
       <div class="input-area">
-        <input v-model="messageUser2" placeholder="Введите сообщение" />
-        <button @click="sendMessageFromUser2">Отправить</button>
+        <input v-model="messageUser2" class="form-control" placeholder="Enter a message" />
+        <butto class="btn btn-primary" @click="sendMessageFromUser2">Send</butto>
       </div>
     </div>
   </div>
@@ -64,15 +64,26 @@ const sendMessageFromUser2 = () => {
 <style>
 .chat-container {
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
 }
 
 .chat-window {
-  border: 1px solid #ccc;
+  border: 1px solid white;
+  border-radius: 10px;
   padding: 10px;
-  width: 45%;
   height: 400px;
   overflow-y: auto;
+  width: calc(50% - 10px);
+}
+
+@media (max-width: 768px) {
+  .chat-container {
+    flex-direction: column;
+  }
+
+  .chat-window {
+    width: 100%;
+  }
 }
 
 .message-feed {
